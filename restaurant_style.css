@@ -1,0 +1,144 @@
+/** rød: #ff413c
+blå: #0bb7d4 eller #53D3D4
+grøn: #6dff53 eller #ACFFBC */
+
+*. {
+	margin: 0;
+}
+
+footer {
+	background-color: dimgray;
+	color: beige;
+	border-radius: 5px;
+	margin-top: 15px;
+}
+
+header {
+	background-color: #ACFFBC;
+	/*	background-image: url(imgs/baggrundsbillede_babushka.jpg); */
+	border-radius: 5px;
+	align-self: center;
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+header img {
+	max-width: auto;
+}
+
+h1,
+h2,
+h3 {
+	color: #ff413c;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+h2 {
+	font-style: italic;
+}
+
+h4 {
+	font-size: 1.3em;
+	text-align: center;
+}
+
+button {
+	border-radius: 10px;
+	border-style: none;
+	color: black;
+
+}
+
+nav {
+	text-align: center;
+}
+
+#liste {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: 1vw;
+	font-family: sans-serif;
+	color: #ff413c;
+}
+
+.ret {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	background-color: #53D3D4;
+	border-radius: 5px;
+	padding: 1vw;
+}
+
+.ret img {
+	max-width: 89vw;
+}
+
+.navn {
+	grid-column: span 2;
+}
+
+.billede {
+	grid-column: span 2;
+}
+
+.kortbeskrivelse {
+	grid-column: 1/2;
+}
+
+.pris {
+	grid-column: 2/3;
+	text-align: right;
+}
+
+/*mobil landscape */
+
+@media screen and (min-width: 376px) and (max-width: 812px) and (orientation: landscape) {
+	#liste {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1vw;
+	}
+	.ret img {
+		width: 45vw;
+	}
+}
+
+/*tablet portrait */
+
+@media screen and (min-width: 376px) and (max-width: 768px) and (orientation: portrait) {
+	#liste {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1vw;
+	}
+	.ret img {
+		width: 45vw;
+	}
+}
+
+/*tablet landscape*/
+
+@media screen and (min-width: 628px) and (max-width: 1024px) and (orientation: landscape) {
+	#liste {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1vw;
+	}
+	.ret img {
+		width: 45vw;
+	}
+}
+
+/*desktop landscape*/
+
+@media screen and (min-width: 1025px) and (max-width: 2560px) and (orientation: landscape) {
+	#liste {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 1vw;
+	}
+	.ret img {
+		width: 30vw;
+	}
+}
