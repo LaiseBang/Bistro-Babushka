@@ -10,6 +10,19 @@
 
 <body>
 
+	<div id="popup"><button class="button" data-button></button>
+		<div id="popup_content">
+<!--			<button>Close</button>-->
+			<img src="" alt="" class="single_img" data-singleImg>
+			<h3 class="single_title" data-titel>test</h3>
+			<details open>
+				<summary>Beskrivelse</summary>
+				<p data-beskrivelse>lang tekst</p>
+			</details>
+		</div>
+
+	</div>
+
 	<header>
 		<h1>Babuska</h1>
 		<h2>- Russisk restaurant i hjertet af København</h2>
@@ -28,7 +41,7 @@
 		</section>
 	</main>
 	<template class="rettemplate" data-rettemplate>
-		<article class="ret">
+		<article class="ret" data-ret>
 			<h4 class="navn" data-navn></h4>
 			<img class="billede" src="" alt="" data-billede>
 			<p class="kortbeskrivelse" data-kortbeskrivelse></p>
@@ -47,4 +60,5 @@
 	<script src="restaurant_javascript.js">
 	</script>
 </body>
+
 </html>

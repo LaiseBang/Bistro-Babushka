@@ -2,7 +2,7 @@
 blå: #0bb7d4 eller #53D3D4
 grøn: #6dff53 eller #ACFFBC */
 
-*. {
+body {
 	margin: 0;
 }
 
@@ -15,15 +15,14 @@ footer {
 
 header {
 	background-color: #ACFFBC;
-	/*	background-image: url(imgs/baggrundsbillede_babushka.jpg); */
 	border-radius: 5px;
 	align-self: center;
 	padding: 5px;
 	margin: 0 0 10px 0;
 }
 
-header img {
-	max-width: auto;
+img {
+	max-width: 100%;
 }
 
 h1,
@@ -54,6 +53,36 @@ nav {
 	text-align: center;
 }
 
+#popup {
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.8);
+	text-align: center;
+	position: fixed;
+	visibility: hidden;
+}
+
+#popup_content {
+	width: 80vw;
+	height: 80vh;
+	background: #fff;
+	position: fixed;
+	top: 10vh;
+	left: 6vh;
+	overflow: scroll;
+}
+
+#popup_content img {
+	max-width: 100%;
+	height: auto;
+}
+
+.button {
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0);
+}
+
 #liste {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -67,11 +96,7 @@ nav {
 	grid-template-columns: 2fr 1fr;
 	background-color: #53D3D4;
 	border-radius: 5px;
-	padding: 1vw;
-}
-
-.ret img {
-	max-width: 89vw;
+	/*padding: 1vw;*/
 }
 
 .navn {
@@ -93,40 +118,43 @@ nav {
 
 /*mobil landscape */
 
-@media screen and (min-width: 376px) and (max-width: 812px) and (orientation: landscape) {
+@media screen and (min-width: 376px) and (orientation: landscape) {
 	#liste {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		grid-gap: 1vw;
 	}
-	.ret img {
-		width: 45vw;
+	#popup_content {
+		width: 90vw;
+		left: 8.7vh;
 	}
 }
 
 /*tablet portrait */
 
-@media screen and (min-width: 376px) and (max-width: 768px) and (orientation: portrait) {
+@media screen and (min-width: 768px) and (orientation: portrait) {
 	#liste {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		grid-gap: 1vw;
 	}
-	.ret img {
-		width: 45vw;
+	#popup_content {
+		width: 90vw;
+		left: 3.8vh;
 	}
 }
 
 /*tablet landscape*/
 
-@media screen and (min-width: 628px) and (max-width: 1024px) and (orientation: landscape) {
+@media screen and (min-width: 813px) and (orientation: landscape) {
 	#liste {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 1fr;
 		grid-gap: 1vw;
 	}
-	.ret img {
-		width: 45vw;
+	#popup_content {
+		width: 90vw;
+		left: 7vh;
 	}
 }
 
@@ -138,7 +166,8 @@ nav {
 		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 1vw;
 	}
-	.ret img {
-		width: 30vw;
+	#popup_content {
+		width: 90vw;
+		left: 9vh;
 	}
 }

@@ -27,12 +27,34 @@
 			klon.querySelector("[data-billede]").alt = "Billede af " + ret.navn;
 			klon.querySelector("[data-kortbeskrivelse]").textContent = ret.kortbeskrivelse;
 			klon.querySelector("[data-pris]").textContent = ret.pris + ",- kr";
+			klon.querySelector("[data-ret]").setAttribute("data-id", ret.id);
+			klon.querySelector("[data-ret]").addEventListener("click", showSingle);
 			dest.appendChild(klon);
 
 			/*Alternativ måde at vælge billederne på */
 			/*	klon.querySelector(".billede").setAttribute("src", "imgs/small/" + ret.billede + "-sm.jpg");
 				klon.querySelector(".billede").setAttribute("alt", "Billede af " + ret.navn);*/
 		});
+	}
+
+	function showSingle() {
+		let myId = this.getAttribute("data-id");
+		let single = retter.find(ret => {
+			if (myId == ret.id) {
+				document.querySelector("#popup").style.visibility = "visible";
+				document.querySelector("[data-titel]").textContent = ret.navn;
+				document.querySelector("[data-singleImg]").src = "imgs/medium/" + ret.billede + "-md.jpg";
+				document.querySelector("[data-singleImg]").alt = "Billede af " + ret.navn;
+				document.querySelector("[data-beskrivelse]").textContent = ret.langbeskrivelse;
+				document.querySelector("[data-pris]").textContent = ret.pris + ",- kr";
+				document.querySelector("button").addEventListener("click", closeModal);
+			}
+		})
+	}
+
+	function closeModal() {
+		console.log("luk modal funktion");
+		document.querySelector("#popup").style.visibility = "hidden";
 	}
 
 	function lavFilter() {
