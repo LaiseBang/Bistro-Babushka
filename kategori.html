@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reataurant Babuska</title>
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+
+	<div id="popup"><button class="button" data-button></button>
+		<div id="popup_content">
+			<!--			<button>Close</button>-->
+			<img src="" alt="" class="single_img" data-singleImg>
+			<h3 class="single_title" data-titel>test</h3>
+			<details open>
+				<summary>Beskrivelse</summary>
+				<p data-beskrivelse>lang tekst</p>
+			</details>
+		</div>
+
+	</div>
+
+	<header>
+		<h1>Babuska</h1>
+		<h2>- Russisk restaurant i hjertet af København</h2>
+		<nav>
+			<button id="filter-alle">Alle</button>
+			<button id="filter-forretter">Forretter</button>
+			<button id="filter-hovedretter">Hovedretter</button>
+			<button id="filter-sideorders">Sideorders</button>
+			<button id="filter-desserter">Desserter</button>
+			<button id="filter-drikkevarer">Drikkevarer</button>
+		</nav>
+	</header>
+	<main>
+		<h3 data-overskrift>Menu</h3>
+		<section id="liste" data-liste>
+		</section>
+	</main>
+	<template class="rettemplate" data-rettemplate>
+		<article class="ret" data-ret>
+			<h4 class="navn" data-navn></h4>
+			<img class="billede" src="" alt="" data-billede>
+			<p class="kortbeskrivelse" data-kortbeskrivelse></p>
+			<p class="pris" data-pris></p>
+		</article>
+	</template>
+
+	<footer>
+		<section>
+			<address>
+		Restaurant Babuska <br>Moskvagade 18<br>1060 København K<br>
+		 </address>
+			<aside> Åbningstider: <br>Mandag - Fredag: 10.30 - 22.00 <br> Lørdag: 12.00 - 23.00 <br> Søndag: Lukket </aside>
+		</section>
+	</footer>
+	<script>
+		//de skarpe parenterser i variablen viser at det er et array
+		let retter = [];
+		let urlParams = new URLSearchParams(window.location.search);
+		let urlKategori = urlParams.get("kategori");
+
+		document.addEventListener("DOMContentLoaded", hentJson);
+
+		async function hentJson() {
+			console.log("async function");
+			let jsonData = await fetch("menu.json");
+			retter = await jsonData.json();
+			vis(retter, "Menu");
+			lavFilter();
+		}
+
+		function vis(retter, overskrift) {
+			console.log("vis retter");
+			let temp = document.querySelector("[data-rettemplate]");
+			let dest = document.querySelector("[data-liste]");
+			dest.innerHTML = "";
+			document.querySelector("[data-overskrift]").textContent = overskrift;
+
+			//loop
+			retter.forEach(ret => {
+
+				if (ret.kategori == urlKategori) {
+					console.log(ret.kategori, urlKategori);
+					let klon = temp.cloneNode(true).content;
+					klon.querySelector("[data-navn]").textContent = ret.navn;
+					klon.querySelector("[data-billede]").src = "imgs/medium/" + ret.billede + "-md.jpg";
+					klon.querySelector("[data-billede]").alt = "Billede af " + ret.navn;
+					klon.querySelector("[data-kortbeskrivelse]").textContent = ret.kortbeskrivelse;
+					klon.querySelector("[data-pris]").textContent = ret.pris + ",- kr";
+					klon.querySelector("article").addEventListener("click", () => {
+						location.href = "single.html?id=" + ret.id;
+					});
+					dest.appendChild(klon);
+				};
+			});
+		};
+
+		function lavFilter() {
+			console.log("filter");
+			let forretter = retter.filter(ret => ret.kategori == "forretter");
+			let hovedretter = retter.filter(ret => ret.kategori == "hovedretter");
+			let sideorders = retter.filter(ret => ret.kategori == "sideorders");
+			let desserter = retter.filter(ret => ret.kategori == "desserter");
+			let drikkevarer = retter.filter(ret => ret.kategori == "drikkevarer");
+
+			//sorter retter efter kategori
+			document.querySelector("#filter-alle").addEventListener("click", () => {
+				location.href = "index.html";
+			});
+			document.querySelector("#filter-forretter").addEventListener("click", () => {
+				location.href = "kategori.html?kategori=forretter";
+			});
+			document.querySelector("#filter-hovedretter").addEventListener("click", () => {
+				location.href = "kategori.html?kategori=hovedretter";
+			});
+			document.querySelector("#filter-sideorders").addEventListener("click", () => {
+				location.href = "kategori.html?kategori=sideorders";
+			});
+			document.querySelector("#filter-desserter").addEventListener("click", () => {
+				location.href = "kategori.html?kategori=desserter";
+			});
+			document.querySelector("#filter-drikkevarer").addEventListener("click", () => {
+				location.href = "kategori.html?kategori=drikkevarer";
+			});
+		};
+
+	</script>
+</body>
+
+</html>
